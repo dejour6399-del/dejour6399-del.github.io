@@ -9,10 +9,13 @@
 <body>
 <p id="m">주소를 확인해 주세요.</p>
 <script>
-// 🔎 네이버예약 보기: …/n#<네이버 예약번호> → 파트너센터 예약 상세로 바로 이동
+// 🔎 네이버예약 보기: …/n#<예약번호 36진수> → 파트너센터 예약 상세로 바로 이동
+// 36진수(예: 1390785849 → n01d89)로 쓰는 이유: 10자리 숫자를 삼성 캘린더가 전화번호로 보고 [통화]를 띄움 (10/28)
+// 예전 10자리 숫자 주소(…/n#1390785849)도 그대로 받는다.
 var NAVER = 'https://partner.booking.naver.com/bizes/180104/booking-list-view/bookings/';
-var bk = (location.hash.slice(1) || location.search.slice(1)).replace(/\D/g, '');
-if (bk) location.replace(NAVER + bk);
+var k = (location.hash.slice(1) || location.search.slice(1)).toLowerCase().replace(/[^0-9a-z]/g, '');
+var bk = /^\d{9,}$/.test(k) ? k : (k ? String(parseInt(k, 36)) : '');
+if (/^\d+$/.test(bk)) location.replace(NAVER + bk);
 </script>
 </body>
 </html>
