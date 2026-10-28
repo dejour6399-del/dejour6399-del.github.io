@@ -11,7 +11,7 @@
 <script>
 // 📇 고객정보 보기: …/c#<고객ID> → 앱시트 고객 상세로 바로 이동 (예전 …/c#<고객ID>-<예약번호> 도 받음)
 // 숫자만 받는다. 고객 정보는 이 페이지에 없다(앱시트가 로그인 확인).
-var APP = 'https://www.appsheet.com/start/48589748-a15e-482a-9e95-0b631b1ecb74?platform=desktop#appName=%EB%93%9C%EC%A5%AC%EB%A5%B4%EC%99%81%EC%8B%B1%EB%B3%B5%EC%82%AC-483613761';
+var APP = 'https://www.appsheet.com/start/48589748-a15e-482a-9e95-0b631b1ecb74#appName=%EB%93%9C%EC%A5%AC%EB%A5%B4%EC%99%81%EC%8B%B1%EB%B3%B5%EC%82%AC-483613761';
 var id = (location.hash.slice(1) || location.search.slice(1)).split('-')[0].replace(/\D/g, '');
 if (id) location.replace(APP + '&view=%EA%B3%A0%EA%B0%9D%EC%A0%95%EB%B3%B4_Detail&row=' + id);
 </script>
