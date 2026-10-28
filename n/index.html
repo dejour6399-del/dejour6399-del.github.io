@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>드쥬르 네이버 예약</title>
+</head>
+<body>
+<p id="m">주소를 확인해 주세요.</p>
+<script>
+// 🔎 네이버예약 보기: …/n#<네이버 예약번호> → 파트너센터 예약 상세로 바로 이동
+var NAVER = 'https://partner.booking.naver.com/bizes/180104/booking-list-view/bookings/';
+var bk = (location.hash.slice(1) || location.search.slice(1)).replace(/\D/g, '');
+if (bk) location.replace(NAVER + bk);
+</script>
+</body>
+</html>
