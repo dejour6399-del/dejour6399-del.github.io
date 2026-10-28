@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>드쥬르 고객</title>
+<style>
+  :root { --bg:#fff; --fg:#222; --btn:#f3eef6; --line:#e2d9e8; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141414; --fg:#eee; --btn:#262229; --line:#3a3340; } }
+  body { margin:0; background:var(--bg); color:var(--fg); font-family:-apple-system,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; }
+  main { max-width:420px; margin:0 auto; padding:32px 16px; display:flex; flex-direction:column; gap:12px; }
+  a { display:block; padding:18px; border:1px solid var(--line); border-radius:14px; background:var(--btn);
+      color:inherit; text-decoration:none; font-size:20px; text-align:center; }
+  p { text-align:center; opacity:.7; }
+</style>
+</head>
+<body>
+<main id="m"><p>주소를 확인해 주세요.</p></main>
+<script>
+// 캘린더 메모의 짧은 주소: …/c#<고객ID>-<네이버예약번호>  (예약번호는 없어도 됨)
+// 숫자만 받아 앱시트·네이버 주소를 만든다. 고객 정보는 이 페이지에 없다(앱시트가 로그인 확인).
+var APP = 'https://www.appsheet.com/start/48589748-a15e-482a-9e95-0b631b1ecb74?platform=desktop#appName=%EB%93%9C%EC%A5%AC%EB%A5%B4%EC%99%81%EC%8B%B1%EB%B3%B5%EC%82%AC-483613761';
+var NAVER = 'https://partner.booking.naver.com/bizes/180104/booking-list-view/bookings/';
+var parts = (location.hash.slice(1) || location.search.slice(1)).split('-');
+var id = (parts[0] || '').replace(/\D/g, '');
+var bk = (parts[1] || '').replace(/\D/g, '');
+var links = [];
+if (id) {
+  // 매출등록은 고객정보 화면의 [매출등록으로_이동] 버튼으로 한다 (대표원장 10/28)
+  links.push(['📇 고객정보 보기', APP + '&view=%EA%B3%A0%EA%B0%9D%EC%A0%95%EB%B3%B4_Detail&row=' + id]);
+}
+if (bk) links.push(['🔎 네이버 예약 보기', NAVER + bk]);
+if (links.length) {
+  var m = document.getElementById('m');
+  m.innerHTML = '';
+  links.forEach(function (l) {
+    var a = document.createElement('a');
+    a.textContent = l[0];
+    a.href = l[1];
+    m.appendChild(a);
+  });
+}
+</script>
+</body>
+</html>
