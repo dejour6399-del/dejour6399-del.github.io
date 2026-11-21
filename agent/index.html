@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>드쥬르 전담 비서</title>
+</head>
+<body>
+<p id="m">전담 비서로 이동하는 중이에요…</p>
+<p><a id="go" href="#">열리지 않으면 여기를 눌러 주세요</a></p>
+<script>
+// 🤖 전담 비서 고정 주소: …/agent → 지금 쓰는 '전담 비서' 세션으로 바로 이동
+// 세션이 바뀌면 아래 AGENT 한 줄만 새 세션 링크로 바꾼다 (드쥬르 스튜디오 Agent 버튼은 그대로).
+// 세션 공유는 반드시 '비공개'. 비공개면 대표원장님 계정으로만 열린다.
+var AGENT = 'https://claude.ai/code/cshk_01PZmNocmkRa5TTmKW2ELPYX1m9s2pnt5Fs5m5k3yHuLPR';
+var ok = /^https:\/\/claude\.ai\//.test(AGENT);
+if (ok) {
+  document.getElementById('go').href = AGENT;
+  location.replace(AGENT);
+} else {
+  document.getElementById('m').textContent = '비서 링크가 아직 없어요. 전담 비서에게 새 링크를 넣어 달라고 해 주세요.';
+  document.getElementById('go').remove();
+}
+</script>
+</body>
+</html>
